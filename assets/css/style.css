@@ -1,0 +1,15 @@
+header{
+    display: flex;
+}
+
+.hide{
+    display: none;
+}
+
+#highScore{
+    width: 80%;
+}
+
+#timer{
+    width: 20%;
+}
