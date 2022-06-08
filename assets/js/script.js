@@ -1,3 +1,5 @@
+
+
 /*
 step one: display start page - title, paragraph, start button
 
@@ -8,3 +10,17 @@ step three: Once finished with all quesitons, score page will be presented with 
 step four: show dashboard of all scores.
 
 */
+
+// var timeRemaining = 75 // for 5 questions
+
+// function countDown() {
+//     timerEl.textContent = timeRemaining
+//     timeRemaining--
+
+// }
+
+// function startGame() {
+
+// }
+
+// startQuizBtn.addEventListener("click", startGame)
