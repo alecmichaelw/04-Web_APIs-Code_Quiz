@@ -1,3 +1,11 @@
+function startGame() {
+
+}
+
+function selectAnswer {
+
+}
+
 
 
 /*
