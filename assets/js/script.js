@@ -1,10 +1,15 @@
+var startButton = document.getElementById("start-btn")
+var questionContainerEl = document.getElementById("question-container")
+
 function startGame() {
-
+    console.log("started")
+    startButton.classList.add("hide")
+    questionContainerEl.classList.remove("hide")
 }
+startButton.addEventListener("click", startGame)
+// function selectAnswer {
 
-function selectAnswer {
-
-}
+// }
 
 
 
@@ -31,4 +36,3 @@ step four: show dashboard of all scores.
 
 // }
 
-// startQuizBtn.addEventListener("click", startGame)
