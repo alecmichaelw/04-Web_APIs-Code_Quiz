@@ -9,7 +9,7 @@
     --hue-correct: 145;
 }
 
-body, main {
+main {
     --hue: var(--hue-neutral);
     padding: 0;
     margin: 0;
@@ -21,11 +21,17 @@ body, main {
     background-color: hsl(var(--hue), 100%, 20%)
 }
 
+header {
+    --hue: var(--hue-neutral);
+    display: flex;
+    background-color: hsl(var(--hue), 100%, 20%);
+}
+
 body.correct {
     --hue: var(--hue-correct);
 }
 
-body.wrong {
+main.wrong {
     --hue: var(--hue-wrong);
 }
 
@@ -82,4 +88,12 @@ body.wrong {
 
 .hide {
     display: none;
+}
+
+#high-score {
+    width: 80%;
+}
+
+#timer {
+    width: 20%;
 }
