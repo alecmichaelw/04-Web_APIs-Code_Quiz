@@ -1,42 +1,26 @@
 *, *::before, *::after {
+    padding: 0;
+    margin: 0;
     box-sizing: border-box;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
 }
 
 :root {
     --hue-neutral: 200;
-    --hue-wrong: 0;
-    --hue-correct: 145;
 }
 
-main {
+body {
     --hue: var(--hue-neutral);
-    padding: 0;
-    margin: 0;
-    display: flex;
-    width: 100vw;
+    display: grid;
+    place-items: center;
     height: 100vh;
-    justify-content: center;
-    align-items: center;
     background-color: hsl(var(--hue), 100%, 20%)
 }
 
-header {
-    --hue: var(--hue-neutral);
-    display: flex;
-    background-color: hsl(var(--hue), 100%, 20%);
-}
-
-body.correct {
-    --hue: var(--hue-correct);
-}
-
-main.wrong {
-    --hue: var(--hue-wrong);
-}
-
 .container {
-    width: 800px;
+    display: block;
+    height: 250px;
+    width: 300px;
     max-width: 80%;
     background-color: white;
     border-radius: 5px;
@@ -52,7 +36,6 @@ main.wrong {
 }
 
 .btn {
-    --hue: var(--hue-neutral);
     border: 1px solid hsl(var(--hue), 100%, 30%);
     background-color: hsl(var(--hue), 100%, 50%);
     border-radius: 5px;
@@ -63,21 +46,18 @@ main.wrong {
 
 .btn:hover {
     border-color: black;
-}
-
-.btn.correct {
-    --hue: var(--hue-correct);
-    color: black;
-}
-
-.btn.wrong {
-    --hue: var(--hue-wrong)
+    cursor: pointer;
 }
 
 .start-btn {
     font-size: 1.5rem;
     font-weight: bold;
     padding: 10px 20px;
+    cursor: pointer;
+}
+
+.start-btn:hover {
+    background-color: green;
 }
 
 .controls {
@@ -90,10 +70,14 @@ main.wrong {
     display: none;
 }
 
-#high-score {
-    width: 80%;
+
+#quiz-header {
+    height: 60px;
+    width: 100%;
 }
 
 #timer {
-    width: 20%;
+    height: 50px;
+    width: 200px;
+    font-size: 18px;
 }

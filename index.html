@@ -10,23 +10,24 @@
 </head>
 <body>
 
-    <header>
-        <span id = "high-score">View Highscore</span>
-        <span id = "timer">Time Remaining:<span id = "time"> 0</span></span>
-    </header>
-
-
     <main>
         <div class = "container">
+        <div id = "quiz-header" >  
+        <div id = "timer">
+            <h6>Time Left</h6>
+            <h6 id = "time">75</h6>
+        </div>
+        </div>
             <div id = "question-container" class = "hide">
                 <div id = "question">Question</div>
                 <div id = "answer-buttons" class = "btn-grid">
-                    <button class = "btn">Answer 1</button>
-                    <button class = "btn">Answer 2</button>
-                    <button class = "btn">Answer 3</button>
-                    <button class = "btn">Answer 4</button>
+                    <button class = "btn, btns">Answer 1</button>
+                    <button class = "btn, btns">Answer 2</button>
+                    <button class = "btn, btns">Answer 3</button>
+                    <button class = "btn, btns">Answer 4</button>
                 </div>
             </div>
+            <p id="aStatus"></p>
             <div class = "controls">
                 <button class = "start-btn btn" id = "start-btn">Start</button>
             </div>

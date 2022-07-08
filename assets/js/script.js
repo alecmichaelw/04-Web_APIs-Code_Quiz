@@ -2,10 +2,49 @@ const startButton = document.getElementById("start-btn")
 const questionContainerEl = document.getElementById("question-container")
 const questionEl = document.getElementById("question")
 const answerBtnEl = document.getElementById("answer-buttons")
-var timerEl = document.getElementById('time')
-var timeRemaining = 75 // for 5 questions
-var clockid
+const answerBtns = document.querySelector(".btns")
 let shuffledQuestions, currentQuestionIndex
+var timerEl = document.getElementById('time')
+var timeRemaining = 75 // for 5 questions, 15sec for each
+var clockID = []
+
+function startGame() {
+    console.log("started")
+    startButton.classList.add("hide")
+    questionContainerEl.classList.remove("hide")
+    shuffledQuestions = questions.sort(() => Math.random() - .5)
+    currentQuestionIndex = 0
+    clockID = setInterval(countDown, 1000)
+    // availableQuestions = [...questions]
+    setNextQuestion()
+}
+
+function setNextQuestion() {
+    resetState()
+    DisplayQuestions(shuffledQuestions[currentQuestionIndex])
+}
+
+function DisplayQuestions(question) {
+    questionEl.innerText = question.question
+    question.answers.forEach(answer => {
+        const button = document.createElement('button')
+        button.innerText = answer.text
+        button.classList.add('btn')
+        button.addEventListener('click', selectAnswer)
+        answerBtnEl.appendChild(button)
+    })
+    // answerBtns.textContent = questions[index].answers[0]
+}
+
+function resetState() {
+    while (answerBtnEl.firstElementChild) {
+        answerBtnEl.removeChild(answerBtnEl.firstElementChild)
+    }
+}
+
+function selectAnswer(e) {
+
+}
 
 const questions = [
     {
@@ -14,86 +53,35 @@ const questions = [
             {text: "4", correct: true},
             {text: "33", correct: false},
             {text: "44", correct: false},
-            {text: "77", correct: false}
+            {text: "77", correct: false},
         ]
     },
 
-    {
-        question: "what is 1 + 1?",
-        answers: [
-            {text: "4", correct: false},
-            {text: "2", correct: true}
-        ]
-    }
+    // {
+    //     question: "what is 1 + 1?",
+    //     answers: [
+    //         {text: "4", correct: false},
+    //         {text: "2", correct: true},
+    //         {text: "6", correct: false},
+    //         {text: "7", correct: false},
+    //     ]
+    // }
 ]
 
 function countDown() {
     timerEl.textContent = timeRemaining
     timeRemaining--
 
-}
-
-function startGame() {
-    console.log("started")
-    startButton.classList.add("hide")
-    shuffledQuestions = questions.sort(() => Math.random() - .5)
-    currentQuestionIndex = 0
-    questionContainerEl.classList.remove("hide")
-    clockid = setInterval(countDown, 1000)
-    setNextQuestion()
-}
-
-
-function setNextQuestion() {
-    resetState()
-    showQuestion(shuffledQuestions[currentQuestionIndex])
-}
-
-function showQuestion(question) {
-    questionEl.innerText = question.question
-    question.answers.forEach(answer => {
-        const button = document.createElement("button")
-        button.innerText = answer.text
-        button.classList.add("btn")
-        if (answer.correct) {
-            button.dataset.correct = answer.correct
-        }
-        button.addEventListener("click", selectAnswer)
-        answerBtnEl.appendChild(button)
-    })
-}
-
-
-function selectAnswer(e) {
-    const selectedButton = e.target
-    const correct = selectedButton.dataset.correct
-    setStatusClass(document.body, correct)
-    Array.from(answerBtnEl.children).forEach(button => {
-        setStatusClass(button, button. dataset.correct)
-    })
-}
-
-function setStatusClass(element, correct) {
-    clearStatusClass(element)
-    if (correct) {
-        element.classList.add("correct")
-    } else {
-        element.classList.add("wrong")
+    if (timeRemaining < 0) {
+        questionEl.classList.add("hide");
+        answerBtnEl.classList.add("hide");
+        answerBtns.classList.add("hide");
+        clearTimeout(clockID)
     }
+
 }
 
-function clearStatusClass(element) {
-    element.classList.remove("correct")
-    element.classList.remove("wrong")
-}
-
-function resetState() {
-    while (answerBtnEl.firstChild) {
-      answerBtnEl.removeChild(answerBtnEl.firstChild)  
-    }
-}
-
-
+answerBtns.addEventListener("click", startGame)
 startButton.addEventListener("click", startGame)
 
 
