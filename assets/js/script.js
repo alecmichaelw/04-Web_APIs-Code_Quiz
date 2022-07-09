@@ -3,6 +3,7 @@ const questionContainerEl = document.getElementById("question-container")
 const questionEl = document.getElementById("question")
 const answerBtnEl = document.getElementById("answer-buttons")
 const answerBtns = document.querySelector(".btns")
+const aStatus = document.getElementById('aStatus')
 let shuffledQuestions, currentQuestionIndex
 var timerEl = document.getElementById('time')
 var timeRemaining = 75 // for 5 questions, 15sec for each
@@ -15,7 +16,6 @@ function startGame() {
     shuffledQuestions = questions.sort(() => Math.random() - .5)
     currentQuestionIndex = 0
     clockID = setInterval(countDown, 1000)
-    // availableQuestions = [...questions]
     setNextQuestion()
 }
 
@@ -30,12 +30,14 @@ function DisplayQuestions(question) {
         const button = document.createElement('button')
         button.innerText = answer.text
         button.classList.add('btn')
+        if (answer.correct) {
+            button.dataset.correct = answer.correct
+        }
         button.addEventListener('click', selectAnswer)
         answerBtnEl.appendChild(button)
     })
-    // answerBtns.textContent = questions[index].answers[0]
-}
 
+}
 function resetState() {
     while (answerBtnEl.firstElementChild) {
         answerBtnEl.removeChild(answerBtnEl.firstElementChild)
@@ -43,6 +45,12 @@ function resetState() {
 }
 
 function selectAnswer(e) {
+    const selectedButton = e.target
+    const correct = selectedButton.dataset.correct
+    if (selectedButton === correct) {
+        setNextQuestion()
+        aStatus.append("Correct!")
+    }
 
 }
 
@@ -57,15 +65,15 @@ const questions = [
         ]
     },
 
-    // {
-    //     question: "what is 1 + 1?",
-    //     answers: [
-    //         {text: "4", correct: false},
-    //         {text: "2", correct: true},
-    //         {text: "6", correct: false},
-    //         {text: "7", correct: false},
-    //     ]
-    // }
+    {
+        question: "what is 1 + 1?",
+        answers: [
+            {text: "4", correct: false},
+            {text: "2", correct: true},
+            {text: "6", correct: false},
+            {text: "7", correct: false},
+        ]
+    }
 ]
 
 function countDown() {
@@ -81,8 +89,11 @@ function countDown() {
 
 }
 
-answerBtns.addEventListener("click", startGame)
+
+
+// answerBtns.addEventListener("click", startGame)
 startButton.addEventListener("click", startGame)
+answerBtnEl.addEventListener("click", startGame)
 
 
 
