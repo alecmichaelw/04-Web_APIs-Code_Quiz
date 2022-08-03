@@ -9,6 +9,14 @@
     --hue-neutral: 200;
 }
 
+.correct {
+    background-color: green;
+}
+
+.wrong {
+    background-color: red;
+}
+
 body {
     --hue: var(--hue-neutral);
     display: grid;
